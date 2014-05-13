@@ -5,7 +5,6 @@ import re
 import zipfile
 import os,sys
 
-#stesura grezza, molto grezza
 
 def download_episode(epnumber, eplist):
     if not (epnumber in eplist):
@@ -53,8 +52,8 @@ ranged = 0
 for opt in sys.argv:
     if opt == '--verbose':
         verbose = 1
-    elif opt == '--720p':
-        res = '720'
+    elif opt == '--720p':		#al momento inutilizzata la distinzione
+        res = '720'				#delle risoluzioni
     elif opt == '--1080p':
         res = '1080p'
     elif opt == '--1080i':
