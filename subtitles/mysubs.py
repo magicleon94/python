@@ -35,7 +35,7 @@ def download_episode(epnumber, eplist):
     os.remove(tmp_file)
 ##############################################################################################################
 
-if len(sys.argv)<=1:
+if len(sys.argv)<=4:
     print "Execute with the following arguments:"
     print "serie_name season_number episode_number directory <options>"
     print "edit the username and password variables to log in correctly"
