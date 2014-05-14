@@ -16,7 +16,6 @@ def download_episode(epnumber, eplist):
     url = opener.open(eplist[epnumber])
     page = url.read()
     url.close()
-    print page
     match = re.search('<!-- End of remositorypathway-->(.*?)<!-- End of remositoryfileinfo -->',page,re.DOTALL)
     match = re.findall(serie+'(.*?)</center></h2><dt><br /><center><a href="(.*?)" rel="nofollow">',match.group(1),re.DOTALL | re.IGNORECASE)
     download_url = match[0][1]
@@ -47,7 +46,7 @@ episode = int(sys.argv[3])
 directory = sys.argv[4]
 tmp_file = 'tmp.zip'
 res = 'default'
-verbose = 1
+verbose = 0
 ranged = 0
 for opt in sys.argv:
     if opt == '--verbose':
@@ -63,8 +62,8 @@ for opt in sys.argv:
 if ranged == 1:
     inf = int(raw_input("Inserire l'estremo inferiore del range di episodi\n"))
     sup = int(raw_input("Inserire l'estremo superiore del range di episodi\n"))
-username = 'username'
-password = 'password'
+username = 'YOUR_USERNAME'
+password = 'YOUR_PASSWORD'
 #login
 login_url = 'http://www.italiansubs.net/index.php'
 login_data = {'username':username,'passwd':password,'remember':'yes', 'option':'com_user','task':'login','silent':'true','return':'aHR0cDovL3d3dy5pdGFsaWFuc3Vicy5uZXQv','4e48ce6d96cc53787c1154ca49da26b8':'1'}
