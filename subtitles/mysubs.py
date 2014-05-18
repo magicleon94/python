@@ -63,8 +63,8 @@ ranged = 0
 for opt in sys.argv:
     if opt == '--verbose':
         verbose = 1
-    elif opt == '--720p':		#al momento inutilizzata la distinzione
-        res = '720p'				#delle risoluzioni
+    elif opt == '--720p':		
+        res = '720p'				
     elif opt == '--1080p':
         res = '1080p'
     elif opt == '--1080i':
@@ -74,8 +74,14 @@ for opt in sys.argv:
 if ranged == 1:
     inf = int(raw_input("Inserire l'estremo inferiore del range di episodi\n"))
     sup = int(raw_input("Inserire l'estremo superiore del range di episodi\n"))
-username = 'TUO_USERNAME'   #modificare solo questi dati
+
+
+#modificare solo questi dati
+username = 'TUO_USERNAME'
 password = 'TUA_PASSWORD'
+
+
+
 #login
 login_url = 'http://www.italiansubs.net/index.php'
 login_data = {'username':username,'passwd':password,'remember':'yes', 'option':'com_user','task':'login','silent':'true','return':'aHR0cDovL3d3dy5pdGFsaWFuc3Vicy5uZXQv','4e48ce6d96cc53787c1154ca49da26b8':'1'}
