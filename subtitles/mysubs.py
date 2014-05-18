@@ -18,6 +18,10 @@ def download_episode(epnumber, eplist):
     url.close()
     match = re.search('<!-- End of remositorypathway-->(.*?)<!-- End of remositoryfileinfo -->',page,re.DOTALL)
     match = re.findall(serie+'(.*?)</center></h2><dt><br /><center><a href="(.*?)" rel="nofollow">',match.group(1),re.DOTALL | re.IGNORECASE)
+    if len(match)<1:
+        print "Si è verificato un errore col download dell'episodio\nProbabilmente i dati di login sono errati."
+        print "Ricontrolla i dati aprendo lo script con un qualunque editor di testo e modifica i valori delle variabili username e password"
+        quit()
     download_url = match[0][1]
     download_page = opener.open(download_url)
     zippy = download_page.read()
@@ -32,6 +36,14 @@ def download_episode(epnumber, eplist):
     zipobj.close()
     zipped_sub.close()
     os.remove(tmp_file)
+
+def highresolutions(res,page):
+    match = re.search("<div id='remositorycontainerlist'>(.*?)<!-- End of remositorycontainerlist -->",page,re.DOTALL)
+    match = re.findall('<a href="(.*?)"> (.*?)</a>',match.group(1),re.DOTALL)
+    for x in match:
+        if x[1]==res:
+            return x[0]
+    return ''
 ##############################################################################################################
 
 if len(sys.argv)<=4:
@@ -52,7 +64,7 @@ for opt in sys.argv:
     if opt == '--verbose':
         verbose = 1
     elif opt == '--720p':		#al momento inutilizzata la distinzione
-        res = '720'				#delle risoluzioni
+        res = '720p'				#delle risoluzioni
     elif opt == '--1080p':
         res = '1080p'
     elif opt == '--1080i':
@@ -62,8 +74,8 @@ for opt in sys.argv:
 if ranged == 1:
     inf = int(raw_input("Inserire l'estremo inferiore del range di episodi\n"))
     sup = int(raw_input("Inserire l'estremo superiore del range di episodi\n"))
-username = 'YOUR_USERNAME'
-password = 'YOUR_PASSWORD'
+username = 'TUO_USERNAME'   #modificare solo questi dati
+password = 'TUA_PASSWORD'
 #login
 login_url = 'http://www.italiansubs.net/index.php'
 login_data = {'username':username,'passwd':password,'remember':'yes', 'option':'com_user','task':'login','silent':'true','return':'aHR0cDovL3d3dy5pdGFsaWFuc3Vicy5uZXQv','4e48ce6d96cc53787c1154ca49da26b8':'1'}
@@ -106,6 +118,7 @@ if not (season in seasonlist):
     raise "Stagione non trovata"
 if verbose==1:
     print "Stagione " + str(season) + " trovata!"
+
 #apro link stagione
 url = opener.open(seasonlist[season])
 page = url.read()
@@ -113,6 +126,19 @@ url.close()
 del(seasonlist) #non mi serve più, la dealloco
 
 #costruisco lista episodi
+if res!='default':
+    print "risoluzione diversa"
+    new_url = highresolutions(res,page)
+    if new_url!='':
+        if verbose==1:
+            print "Risoluzione ", res, " trovata!"
+        url = opener.open(new_url)
+        page = url.read()
+        url.close
+    else:
+        if verbose==1:
+            print "Risoluzione non trovata, procedo al download standard"
+        
 match = re.search("<div id='remositoryfilelisting'>(.*?)<!-- End of remositoryfilelisting -->",page,re.DOTALL)
 match = re.findall(';<a href="(.*?)">'+ str(serie) + ' ' + str(season) + 'x'+'(.*?)</a>',match.group(1),re.DOTALL | re.IGNORECASE)
 episodelist = {}
