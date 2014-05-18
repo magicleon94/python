@@ -4,6 +4,6 @@ Prossimo passo: da definire, sistemare un po' la pulizia e la non obbligatoriet√
 
 Utilizzo:
 da terminale:	
-	python mysubs.py <nome telefilm> <stagione> <episodio> <directory di download> --[opzioni]
+	python mysubs.py nome_telefilm numero_stagione numero_episodio directory_di_download [--opzioni]
 
 
