@@ -51,15 +51,11 @@ if len(sys.argv)<=4:
     print "serie_name season_number episode_number directory <options>"
     print "edit the username and password variables to log in correctly"
     quit()
-
+"""
 serie = sys.argv[1]
 season = int(sys.argv[2])
 episode = int(sys.argv[3])
 directory = sys.argv[4]
-tmp_file = 'tmp.zip'
-res = 'default'
-verbose = 0
-ranged = 0
 for opt in sys.argv:
     if opt == '--verbose':
         verbose = 1
@@ -71,6 +67,43 @@ for opt in sys.argv:
         res = '1080i'
     elif opt == '--range':
         ranged = 1
+"""
+tmp_file = 'tmp.zip'
+res = 'default'
+verbose = 0
+ranged = 0
+necessary = 0
+for opt in sys.argv:
+    if opt == '--verbose':
+        verbose = 1
+    elif opt == '--720p':		
+        res = '720p'				
+    elif opt == '--1080p':
+        res = '1080p'
+    elif opt == '--1080i':
+        res = '1080i'
+    elif opt == '--range':
+        ranged = 1
+        necessary+=1
+    elif opt == '-serie':
+        serie = argv[argv.index(opt)+1]
+        necessary+=1
+    elif opt == '-season':
+        season = argv[argv.index(opt)+1]
+        necessary+=1
+    elif opt == '-episode':
+        episode = argv[argv.index(opt)+1]
+        necessary+=1
+    elif opt == '-dir':
+        directory = argv[argv.index(opt)+1]
+        necessary+=1
+if necessary<4:
+    print "Errore, non sono stati forniti tutti i dati necessari"
+    print "flag obbligatiorie:"
+    print "-serie nome_serie \n -season numero_stagione \n -episode numero_episodio \n -dir percorso_di_download"
+    print "flag opzionali:"
+    print "--verbose --720p --1080p --1080i --range"
+    quit()
 if ranged == 1:
     inf = int(raw_input("Inserire l'estremo inferiore del range di episodi\n"))
     sup = int(raw_input("Inserire l'estremo superiore del range di episodi\n"))
