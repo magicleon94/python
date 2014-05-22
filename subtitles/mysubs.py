@@ -86,16 +86,16 @@ for opt in sys.argv:
         ranged = 1
         necessary+=1
     elif opt == '-serie':
-        serie = argv[argv.index(opt)+1]
+        serie = sys.argv[sys.argv.index(opt)+1]
         necessary+=1
     elif opt == '-season':
-        season = argv[argv.index(opt)+1]
+        season = int(sys.argv[sys.argv.index(opt)+1])
         necessary+=1
     elif opt == '-episode':
-        episode = argv[argv.index(opt)+1]
+        episode = int(sys.argv[sys.argv.index(opt)+1])
         necessary+=1
     elif opt == '-dir':
-        directory = argv[argv.index(opt)+1]
+        directory = sys.argv[sys.argv.index(opt)+1]
         necessary+=1
 if necessary<4:
     print "Errore, non sono stati forniti tutti i dati necessari"
@@ -112,8 +112,6 @@ if ranged == 1:
 #modificare solo questi dati
 username = 'TUO_USERNAME'
 password = 'TUA_PASSWORD'
-
-
 
 #login
 login_url = 'http://www.italiansubs.net/index.php'
@@ -166,7 +164,6 @@ del(seasonlist) #non mi serve più, la dealloco
 
 #costruisco lista episodi
 if res!='default':
-    print "risoluzione diversa"
     new_url = highresolutions(res,page)
     if new_url!='':
         if verbose==1:
