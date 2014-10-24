@@ -86,7 +86,7 @@ for opt in sys.argv:
         ranged = 1
         necessary+=1
     elif opt == '-serie':
-        serie = sys.argv[sys.argv.index(opt)+1]
+        serie = (sys.argv[sys.argv.index(opt)+1]).lower()
         necessary+=1
     elif opt == '-season':
         season = int(sys.argv[sys.argv.index(opt)+1])
@@ -136,7 +136,8 @@ for x in match:
     serieslist[x[1].lower()] = x[0]
 
 if not (serie in serieslist):
-    raise "Serie non trovata"
+    print "Serie non trovata"
+    quit()
 if verbose==1:
     print "Serie  '", serie , "' trovata!"
 #apro link serie
@@ -152,7 +153,8 @@ seasonlist = {}
 for x in match:
     seasonlist[int(x[1])] = x[0]
 if not (season in seasonlist):
-    raise "Stagione non trovata"
+    print "Stagione non trovata"
+    quit()
 if verbose==1:
     print "Stagione " + str(season) + " trovata!"
 
