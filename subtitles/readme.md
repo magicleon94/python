@@ -1,9 +1,8 @@
 L'idea è di uno script che consenta di scaricare i sottotitoli per i telefilm da www.italiansubs.net
 senza collegarsi al sito web tramite browser.
-Prossimo passo: da definire, sistemare un po' la pulizia
 
 Utilizzo:
-da terminale:	
+da terminale(Linux/Mac):	
 	python mysubs.py -serie [nome serie] -season [numero stagione] -episode [numero episodio] -dir [directory di download] [--opzioni]
 Le opzioni:
 --720p
