@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#Script by  magicleon94 //Antonello Galipò
 import urllib, urllib2
 import cookielib
 import re
