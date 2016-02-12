@@ -11,7 +11,7 @@ Le opzioni:
 scaricano, se presenti, i sottotitoli per episodi con le  rispettive risoluzioni
 --ranged
 permette di scaricare i sottotitoli degli episodi compresi in un range specificato dall'utente
---verbose
-mostra vari messaggi di dialogo durante l'esecuzione dello script
+--quiet
+sopprime i vari messaggi di dialogo durante l'esecuzione dello script
 
 
