@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #Script by  magicleon94 //Antonello Galipò
+
 import urllib, urllib2
 import cookielib
 import re
@@ -52,31 +53,15 @@ if len(sys.argv)<=4:
     print "serie_name season_number episode_number directory <options>"
     print "edit the username and password variables to log in correctly"
     quit()
-"""
-serie = sys.argv[1]
-season = int(sys.argv[2])
-episode = int(sys.argv[3])
-directory = sys.argv[4]
-for opt in sys.argv:
-    if opt == '--verbose':
-        verbose = 1
-    elif opt == '--720p':		
-        res = '720p'				
-    elif opt == '--1080p':
-        res = '1080p'
-    elif opt == '--1080i':
-        res = '1080i'
-    elif opt == '--range':
-        ranged = 1
-"""
+
 tmp_file = 'tmp.zip'
 res = 'default'
-verbose = 0
+verbose = 1
 ranged = 0
 necessary = 0
 for opt in sys.argv:
-    if opt == '--verbose':
-        verbose = 1
+    if opt == '--quiet':
+        verbose = 0
     elif opt == '--720p':		
         res = '720p'				
     elif opt == '--1080p':
@@ -85,7 +70,7 @@ for opt in sys.argv:
         res = '1080i'
     elif opt == '--range':
         ranged = 1
-        necessary+=1
+        #necessary+=1
     elif opt == '-serie':
         serie = (sys.argv[sys.argv.index(opt)+1]).lower()
         necessary+=1
